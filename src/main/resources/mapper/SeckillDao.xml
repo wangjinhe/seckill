@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  接口SeckillDao的各个方法对应的sql语句    <![CDATA[  xml转义内容   ]]>    -->
+<mapper namespace="org.seckill.dao.SeckillDao">
+
+    <!--方法queryById对应的sql   -->
+    <select id="queryById" parameterType="long" resultType="Seckill">
+        select seckill_id,name,number,start_time,end_time,create_time
+        from seckill
+        where seckill_id=#{seckillId}
+    </select>
+
+    <!-- 查询列表   原方法返回List<Seckill>,resultType写Seckill就行了  -->
+    <select id="queryAll"    resultType="Seckill">
+        select seckill_id,name,number,start_time,end_time,create_time
+        from seckill
+        limit #{offset},#{count}
+    </select>
+
+    <!-- 减库存 -->
+    <update id="reduceNumber" >
+        update seckill set number=number-1
+        where seckill_id=#{seckillId}
+        and  number>0
+        and start_time  <![CDATA[   <=   ]]> #{killTime}
+        and end_time >=  #{killTime}
+
+    </update>
+
+</mapper>
