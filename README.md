@@ -11,9 +11,26 @@
 
 # 二、涉及的技术
 
-1,Spring <br />
-2,SpringMVC <br />
-3,Mybatis <br />
-4,BootStrap <br />
-5,restful接口编程 <br />
-6,单元测试 <br />
+### 1,Spring <br />
+### 2,SpringMVC <br />
+### 3,Mybatis <br />
+### 4,BootStrap <br />
+### 5,restful接口编程 <br />
+### 6,单元测试 <br />
+
+# 三、运行效果
+### 1，列表页<br />
+![](https://github.com/wangjinhe/seckill/blob/master/imgs/list.png)
+
+### 2,详情页<br />
+验证cookie <br />
+![](https://github.com/wangjinhe/seckill/blob/master/imgs/cookie.png)
+
+等待秒杀 <br />
+![](https://github.com/wangjinhe/seckill/blob/master/imgs/detail-wait.png)
+
+秒杀开始<br />
+![](https://github.com/wangjinhe/seckill/blob/master/imgs/detail-start.png)
+
+秒杀结束<br />
+![](https://github.com/wangjinhe/seckill/blob/master/imgs/detail-stop.png)
