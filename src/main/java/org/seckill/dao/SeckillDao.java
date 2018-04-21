@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 //@Component 这个注解是不需要的
 public interface SeckillDao {
@@ -35,5 +36,15 @@ public interface SeckillDao {
     //原因：对应的xml文件中sql语句要接受两个参数，若要正确传参，则需要给参数命名
      */
     int reduceNumber(@Param("seckillId") long seckillId,@Param("killTime")  Date killTime);
+
+
+    /**
+     * 通过存储过程执行秒杀
+     * 通过map传递参数
+     * @param paramMap
+     */
+    void killByProcedure(Map<String,Object> paramMap);
+
+
 
 }

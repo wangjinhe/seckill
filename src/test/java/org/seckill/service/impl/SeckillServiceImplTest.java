@@ -100,6 +100,37 @@ public class SeckillServiceImplTest {
                     System.out.println(e.getMessage());
                 }
             }
+    }
+
+
+
+    @Test
+    public void executeSeckillProcedure() throws Exception {
+
+        long seckillId = 1001L;
+        long userPhone = 18717181113L;
+
+        Exposer exposer = getExposer(seckillId);
+        if (exposer.isExposed() == false) {
+            logger.info("秒杀关闭");
+        } else {
+            String md5 = exposer.getMd5();
+            SeckillExecution seckillExecution = null;
+            try {
+                seckillExecution = seckillService.executeSeckillProcedure(seckillId, userPhone, md5);
+                if (seckillExecution.getState() == SeckillStatEnum.SUCCESS.getState()) {
+                    System.out.println("秒杀成功");
+                    System.out.println(seckillExecution);
+                } else  {
+                    System.out.println(seckillExecution);
+                }
+            } catch (RepeatKillException e) {  // 捕获已知的异常
+                System.out.println(e.getMessage());
+            } catch (SeckillCloseException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
 
     }
 

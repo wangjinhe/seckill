@@ -88,8 +88,15 @@ public class SeckillController {
             return  seckillResult;
         }
         try {
-            seckillExecution = seckillService.executeSeckill(seckillId,userPhone,md5);
-            seckillResult = new SeckillResult<SeckillExecution>(true,seckillExecution);
+            // 声明式事务执行秒杀
+            //seckillExecution = seckillService.executeSeckill(seckillId,userPhone,md5);
+            // 通过存储过程执行秒杀
+            seckillExecution = seckillService.executeSeckillProcedure(seckillId,userPhone,md5);
+            if(seckillExecution.getState() == SeckillStatEnum.SUCCESS.getState()) {
+                seckillResult = new SeckillResult<SeckillExecution>(true, seckillExecution);
+            } else  {
+                seckillResult = new SeckillResult<SeckillExecution>(false,seckillExecution.getStateInfo());
+            }
             return  seckillResult;
         }catch (RepeatKillException ex){
             seckillResult = new SeckillResult<SeckillExecution>(false, SeckillStatEnum.REPEAT_KILL.getStateInfo());

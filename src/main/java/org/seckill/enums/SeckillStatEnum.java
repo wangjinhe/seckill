@@ -31,7 +31,7 @@ public enum SeckillStatEnum {
      * @param state
      * @return
      */
-    public  SeckillStatEnum stateOf(int state){
+    public static  SeckillStatEnum stateOf(int state){
         for (SeckillStatEnum seckillState: values()) {
             if(seckillState.getState() == state){
                 return  seckillState;
@@ -45,16 +45,9 @@ public enum SeckillStatEnum {
         return state;
     }
 
-    public void setState(int state) {
-        this.state = state;
-    }
 
     public String getStateInfo() {
         return stateInfo;
-    }
-
-    public void setStateInfo(String stateInfo) {
-        this.stateInfo = stateInfo;
     }
 
 

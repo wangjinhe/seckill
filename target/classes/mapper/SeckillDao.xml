@@ -29,4 +29,21 @@
 
     </update>
 
+    <update id="execute_seckill">
+        call execute_seckill(#{seckillId},#{userPhone},now(),@v_result)
+        select @v_result
+    </update>
+
+    <!--  调用存储过程执行秒杀  注意jdbcType都是大写，有规范要求  -->
+    <select id="killByProcedure"   useCache="false"
+            statementType="CALLABLE">
+        <![CDATA[
+        call execute_seckill(
+        #{seckillId,mode=IN,jdbcType=BIGINT},
+        #{userPhone,mode=IN,jdbcType=BIGINT},
+        #{killTime,mode=IN,jdbcType=TIMESTAMP},
+        #{result,mode=OUT,jdbcType=INTEGER});
+        ]]>
+    </select>
+
 </mapper>
